@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ImageHandlerService} from '../services/image-handler.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private imageHandlerService: ImageHandlerService) { }
 
   ngOnInit() {
   }
 
+  selectSlide(index: number) {
+    this.imageHandlerService.selectedIndex = index;
+    this.imageHandlerService.showCarousel = true;
+  }
 }

@@ -24,11 +24,11 @@ export class CarouselComponent implements OnInit {
 
   }
 
-  @ViewChildren('refCarousel') carousel: QueryList<NgbCarousel>;
+  //@ViewChildren('refCarousel') carousel: QueryList<NgbCarousel>;
   //@ViewChild('refCarousel', {static : true}) carousel: NgbCarousel;
 
   @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
-
+/*
   ngAfterViewInit(): void {
     //this.carousel.pause();
     console.log('ngAfterViewInit start', this.isShowed);
@@ -38,6 +38,8 @@ export class CarouselComponent implements OnInit {
     console.log('ngAfterViewInit end');
 
   }
+*/
+
 
   ngOnDestroy(): void {
     console.log('ngOnDestroy', this.isShowed);

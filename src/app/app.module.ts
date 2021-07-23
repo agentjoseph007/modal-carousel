@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ListContainerComponent } from './shared/list-container/list-container.component';
 import { ListComponent } from './shared/list/list.component';
 import { CarouselComponent } from './shared/carousel/carousel.component';
+import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CarouselComponent } from './shared/carousel/carousel.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

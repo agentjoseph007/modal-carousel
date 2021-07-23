@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
 @Injectable( )
 export class ImageHandlerService {
   private _selectedIndex = 0;
   private _showCarousel = false;
+
+  statusUpdate = new EventEmitter<boolean>();
   constructor() { }
 
   get selectedIndex(): number {

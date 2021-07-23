@@ -1,14 +1,15 @@
-import {Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {NgbCarousel, NgbSlideEvent, NgbSlideEventSource} from '@ng-bootstrap/ng-bootstrap';
+import {AfterViewInit, Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {NgbCarousel, NgbModal, NgbSlideEvent, NgbSlideEventSource} from '@ng-bootstrap/ng-bootstrap';
+import {ImageHandlerService} from '../services/image-handler.service';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements OnInit, AfterViewInit {
 
-
+  @ViewChildren('template') template: QueryList<any>;
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   isFocused = false;
   paused = false;
@@ -17,11 +18,24 @@ export class CarouselComponent implements OnInit {
   pauseOnHover = true;
   pauseOnFocus = true;
   @Input() isShowed: boolean;
-  constructor() { }
+  constructor( private modalService: NgbModal, private imageHandlerService: ImageHandlerService) {
+    this.imageHandlerService.statusUpdate.subscribe(
+      (status: boolean) => {
+        this.isShowed = status;
+        console.log('constructor');
+      });
+  }
+
 
   ngOnInit(): void {
-    console.log('ngOnInit', this.isShowed);
+    console.log('CarouselComponent ngOnInit', this.isShowed);
+    console.log('CarouselComponent imageHandlerService', this.imageHandlerService);
 
+  }
+
+  ngAfterViewInit(): void {
+    //console.log('ngAfterViewInit');
+    //this.modalService.open(this.template.first);
   }
 
   //@ViewChildren('refCarousel') carousel: QueryList<NgbCarousel>;

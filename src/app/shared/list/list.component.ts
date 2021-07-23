@@ -14,7 +14,13 @@ export class ListComponent implements OnInit {
   }
 
   selectSlide(index: number) {
+    console.log('this.imageHandlerService');
+
+
     this.imageHandlerService.selectedIndex = index;
     this.imageHandlerService.showCarousel = true;
+    console.log('this.imageHandlerService' , this.imageHandlerService);
+    this.imageHandlerService.statusUpdate.emit(true);
+
   }
 }

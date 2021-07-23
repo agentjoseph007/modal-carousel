@@ -7,13 +7,15 @@ import { ListContainerComponent } from './shared/list-container/list-container.c
 import { ListComponent } from './shared/list/list.component';
 import { CarouselComponent } from './shared/carousel/carousel.component';
 import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalContainerComponent } from './shared/modal-container/modal-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListContainerComponent,
     ListComponent,
-    CarouselComponent
+    CarouselComponent,
+    ModalContainerComponent
   ],
   imports: [
     BrowserModule,

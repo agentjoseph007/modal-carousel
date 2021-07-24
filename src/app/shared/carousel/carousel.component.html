@@ -1,11 +1,4 @@
-
-
-
-
-
-
-<p>pagag</p>
-<ngb-carousel (slide)="onSlide($event)">
+<ngb-carousel (slide)="onSlide($event)" [activeId]="activeIndex">
   <ng-template ngbSlide>
     <div class="picsum-img-wrapper">
       <img [src]="images[0]" alt="Random first slide">

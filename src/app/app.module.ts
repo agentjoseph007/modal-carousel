@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ListContainerComponent } from './shared/list-container/list-container.component';
 import { ListComponent } from './shared/list/list.component';
 import { CarouselComponent } from './shared/carousel/carousel.component';
-import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbCarouselModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalContainerComponent } from './shared/modal-container/modal-container.component';
 
 @NgModule({
@@ -20,9 +20,11 @@ import { ModalContainerComponent } from './shared/modal-container/modal-containe
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CarouselComponent, ModalContainerComponent]
 })
 export class AppModule { }

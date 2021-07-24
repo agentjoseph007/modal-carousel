@@ -1,4 +1,12 @@
-<div>
+<div style="padding-left: 10px;">
+  <div (click)="setFocusSlider()"> show container</div>
+  <div (click)="removeFocusSlider()"> hide container</div>
+</div>
+
+<br>
+<br>
+<br>
+<div *ngIf="showCheck">
   <app-list-container>
 
   </app-list-container>

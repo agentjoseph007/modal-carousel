@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, ComponentRef, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {NgbCarousel, NgbModal, NgbSlideEvent, NgbSlideEventSource} from '@ng-bootstrap/ng-bootstrap';
 import {ImageHandlerService} from '../services/image-handler.service';
 
@@ -7,9 +7,14 @@ import {ImageHandlerService} from '../services/image-handler.service';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit, AfterViewInit {
+export class CarouselComponent implements OnInit, AfterViewInit  {
 
   @ViewChildren('template') template: QueryList<any>;
+  @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
+  // @ViewChildren('refCarousel') carousel: QueryList<NgbCarousel>;
+  // @ViewChild('refCarousel', {static : true}) carousel: NgbCarousel;
+
+
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   isFocused = false;
   paused = false;
@@ -18,47 +23,25 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   pauseOnHover = true;
   pauseOnFocus = true;
   @Input() isShowed: boolean;
-  constructor( private modalService: NgbModal, private imageHandlerService: ImageHandlerService) {
-    this.imageHandlerService.statusUpdate.subscribe(
-      (status: boolean) => {
-        this.isShowed = status;
-        console.log('constructor');
-      });
+
+  activeIndex: string;
+
+  constructor(private imageHandlerService: ImageHandlerService) {
+    console.log('CarouselComponent');
+    console.log(this.imageHandlerService.selectedIndex);
+    this.activeIndex = this.imageHandlerService.selectedIndex.toString();
   }
 
 
   ngOnInit(): void {
-    console.log('CarouselComponent ngOnInit', this.isShowed);
-    console.log('CarouselComponent imageHandlerService', this.imageHandlerService);
-
+    console.log('ngOnInit');
+    console.log(this.activeIndex);
   }
 
   ngAfterViewInit(): void {
-    //console.log('ngAfterViewInit');
-    //this.modalService.open(this.template.first);
+    console.log('ngAfterViewInit');
+    console.log(this.activeIndex);
   }
-
-  //@ViewChildren('refCarousel') carousel: QueryList<NgbCarousel>;
-  //@ViewChild('refCarousel', {static : true}) carousel: NgbCarousel;
-
-  @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
-/*
-  ngAfterViewInit(): void {
-    //this.carousel.pause();
-    console.log('ngAfterViewInit start', this.isShowed);
-    console.log('focused', this.carousel.first.focused);
-    this.carousel.first.focus();
-    console.log('focused', this.carousel.first.focused);
-    console.log('ngAfterViewInit end');
-
-  }
-*/
-
-
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy', this.isShowed);
-  }
-
 
   togglePaused() {
     if (this.paused) {

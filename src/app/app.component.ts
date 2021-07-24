@@ -9,4 +9,13 @@ import {ImageHandlerService} from './shared/services/image-handler.service';
 })
 export class AppComponent {
   title = 'my-first-project';
+  showCheck = false;
+
+  setFocusSlider(): void{
+    this.showCheck = !this.showCheck;
+  }
+
+  removeFocusSlider(): void {
+    this.showCheck = !this.showCheck;
+  }
 }
